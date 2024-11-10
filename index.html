@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tamagotchi Web</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            color: #fff;
+        }
+
+        /* Estilo da TV */
+        .tv {
+            width: 300px;
+            height: 250px;
+            background-color: #000;
+            border: 10px solid #555;
+            border-radius: 10px;
+            padding: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* "Antenas" da TV */
+        .tv::before, .tv::after {
+            content: "";
+            width: 5px;
+            height: 30px;
+            background-color: #555;
+            position: absolute;
+            top: -35px;
+        }
+        .tv::before {
+            left: 20px;
+            transform: rotate(-30deg);
+        }
+        .tv::after {
+            right: 20px;
+            transform: rotate(30deg);
+        }
+
+        /* Container do Tamagotchi */
+        .tamagotchi {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #000;
+            animation: idle 1s infinite alternate;
+        }
+
+        /* Botões */
+        .button-container {
+            margin-top: 20px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px;
+        }
+
+        /* Animações */
+        @keyframes idle {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-5px); }
+        }
+        @keyframes happy {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        @keyframes sleep {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(20px); opacity: 0.5; }
+        }
+        @keyframes play {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Meu Tamagotchi</h1>
+    <div class="tv">
+        <div class="tamagotchi" id="tamagotchi">😊</div>
+    </div>
+    <div class="status" id="hunger">Fome: 0</div>
+    <div class="status" id="fun">Diversão: 0</div>
+    <div class="status" id="energy">Energia: 0</div>
+    <div class="button-container">
+        <button onclick="feed()">Alimentar</button>
+        <button onclick="play()">Brincar</button>
+        <button onclick="sleep()">Dormir</button>
+    </div>
+
+    <script src="tamagotchi.js"></script>
+</body>
+</html>
